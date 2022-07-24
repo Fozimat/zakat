@@ -64,9 +64,9 @@ class PembayaranZakatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Zakat $zakat)
     {
-        //
+        return view('zakat.edit', compact(['zakat']));
     }
 
     /**
@@ -76,9 +76,12 @@ class PembayaranZakatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Zakat $zakat)
     {
-        //
+        $data = $request->all();
+        $data['tanggal_transaksi'] = Carbon::createFromFormat('m/d/Y', $request->tanggal_transaksi)->format('Y-m-d');
+        $zakat->update($data);
+        return redirect()->route('zakat.index')->with('alert', 'Data berhasil diedit');
     }
 
     /**

@@ -73,9 +73,11 @@
                                 <td>@format_angka($z->zakat_fidyah)</td>
                                 <td>@format_angka($z->infaq)</td>
                                 <td>
-                                    <button class="btn btn-icon btn-warning btn-rounded">
-                                        <i class="anticon anticon-edit"></i>
-                                    </button>
+                                    <a href="{{ route('zakat.edit', $z->id) }}">
+                                        <button class="btn btn-icon btn-warning btn-rounded">
+                                            <i class="anticon anticon-edit"></i>
+                                        </button>
+                                    </a>
                                     <button type="button" data-toggle="modal" data-target="#hapusZakat"
                                         class="btn btn-icon btn-danger btn-rounded">
                                         <i class="anticon anticon-delete"></i>
