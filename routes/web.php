@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/zakat/excel', [App\Http\Controllers\PembayaranZakatController::class, 'excel'])->name('zakat.excel');
 Route::resource('dashboard', DashboardController::class);
 Route::resource('zakat', PembayaranZakatController::class);
 Auth::routes();

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ZakatExport;
 use Carbon\Carbon;
 use App\Models\Zakat;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PembayaranZakatController extends Controller
 {
@@ -15,8 +17,13 @@ class PembayaranZakatController extends Controller
      */
     public function index()
     {
-        $zakat = Zakat::all();
+        $zakat = Zakat::orderBy('id', 'DESC')->get();
         return view('zakat.index', compact(['zakat']));
+    }
+
+    public function excel()
+    {
+        return Excel::download(new ZakatExport, 'zakat.xlsx');
     }
 
     /**

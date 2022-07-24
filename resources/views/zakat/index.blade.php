@@ -140,8 +140,9 @@
                                 <th>Fitrah(Uang)</th>
                                 <th>Fitrah(Beras)</th>
                                 <th>Zakat Mal</th>
+                                <th>Zakat Fidyah</th>
                                 <th>Infaq</th>
-                                <th></th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                     </table>
