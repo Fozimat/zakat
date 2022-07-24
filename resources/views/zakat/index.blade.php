@@ -42,56 +42,106 @@
                 <a href="{{ route('zakat.create') }}" class="btn btn-secondary">Tambah Data</a>
             </div>
             <div class="m-t-25">
-                <table id="data-table" class="table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama</th>
-                            <th>Jumlah Jiwa</th>
-                            <th>Fitrah(Uang)</th>
-                            <th>Fitrah(Beras)</th>
-                            <th>Zakat Mal</th>
-                            <th>Infaq</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($zakat as $z)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $z->tanggal_transaksi }}</td>
-                            <td>{{ $z->nama }}</td>
-                            <td>{{ $z->jumlah_jiwa }}</td>
-                            <td>@format_angka($z->zakat_fitrah_uang)</td>
-                            <td>@format_angka($z->zakat_fitrah_beras)</td>
-                            <td>@format_angka($z->zakat_mal)</td>
-                            <td>@format_angka($z->infaq)</td>
-                            <td>
-                                <button class="btn btn-icon btn-warning btn-rounded">
-                                    <i class="anticon anticon-edit"></i>
-                                </button>
-                                <button class="btn btn-icon btn-danger btn-rounded">
-                                    <i class="anticon anticon-delete"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama</th>
-                            <th>Jumlah Jiwa</th>
-                            <th>Fitrah(Uang)</th>
-                            <th>Fitrah(Beras)</th>
-                            <th>Zakat Mal</th>
-                            <th>Infaq</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive">
+                    <table id="data-table" class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>No Transaksi</th>
+                                <th>Tanggal</th>
+                                <th>Nama</th>
+                                <th>Jumlah Jiwa</th>
+                                <th>Fitrah(Uang)</th>
+                                <th>Fitrah(Beras)</th>
+                                <th>Zakat Mal</th>
+                                <th>Zakat Fidyah</th>
+                                <th>Infaq</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($zakat as $z)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $z->no_transaksi }}</td>
+                                <td>{{ $z->tanggal_transaksi->isoFormat('D MMMM Y') }}</td>
+                                <td>{{ $z->nama }}</td>
+                                <td>{{ $z->jumlah_jiwa }}</td>
+                                <td>@format_angka($z->total_zakat_fitrah_uang)</td>
+                                <td>@format_angka($z->zakat_fitrah_beras)</td>
+                                <td>@format_angka($z->zakat_mal)</td>
+                                <td>@format_angka($z->zakat_fidyah)</td>
+                                <td>@format_angka($z->infaq)</td>
+                                <td>
+                                    <button class="btn btn-icon btn-warning btn-rounded">
+                                        <i class="anticon anticon-edit"></i>
+                                    </button>
+                                    <form action="{{ route('zakat.destroy', $z->id) }}" data-toggle="modal"
+                                        data-target="#hapusZakat">
+                                        <button type="submit" class="btn btn-icon btn-danger btn-rounded">
+                                            <i class="anticon anticon-delete"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="hapusZakat">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <i class="anticon anticon-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah anda yakin?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="exampleModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <i class="anticon anticon-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>No Transaksi</th>
+                                <th>Tanggal</th>
+                                <th>Nama</th>
+                                <th>Jumlah Jiwa</th>
+                                <th>Fitrah(Uang)</th>
+                                <th>Fitrah(Beras)</th>
+                                <th>Zakat Mal</th>
+                                <th>Infaq</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

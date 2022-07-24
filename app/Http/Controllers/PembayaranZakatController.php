@@ -26,7 +26,11 @@ class PembayaranZakatController extends Controller
      */
     public function create()
     {
-        return view('zakat.create');
+        $today = Carbon::now()->isoFormat('DDMMYY');
+        $number = Zakat::max('id') + 1;
+        $generate = str_pad($number, 4, '0', STR_PAD_LEFT);
+        $generate_no_transaksi = $today . $generate;
+        return view('zakat.create', compact(['generate_no_transaksi']));
     }
 
     /**

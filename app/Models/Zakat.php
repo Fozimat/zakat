@@ -10,4 +10,5 @@ class Zakat extends Model
     use HasFactory;
     protected $table = 'zakat';
     protected $guarded  = [''];
+    protected $dates = ['tanggal_transaksi'];
 }
