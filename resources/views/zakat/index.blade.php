@@ -76,12 +76,10 @@
                                     <button class="btn btn-icon btn-warning btn-rounded">
                                         <i class="anticon anticon-edit"></i>
                                     </button>
-                                    <form action="{{ route('zakat.destroy', $z->id) }}" data-toggle="modal"
-                                        data-target="#hapusZakat">
-                                        <button type="submit" class="btn btn-icon btn-danger btn-rounded">
-                                            <i class="anticon anticon-delete"></i>
-                                        </button>
-                                    </form>
+                                    <button type="button" data-toggle="modal" data-target="#hapusZakat"
+                                        class="btn btn-icon btn-danger btn-rounded">
+                                        <i class="anticon anticon-delete"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <div class="modal fade" id="hapusZakat">
@@ -93,14 +91,18 @@
                                                 <i class="anticon anticon-close"></i>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            Apakah anda yakin?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Delete</button>
-                                        </div>
+                                        <form action="{{ route('zakat.destroy', $z->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="modal-body">
+                                                Apakah anda yakin?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

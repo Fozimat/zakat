@@ -87,8 +87,9 @@ class PembayaranZakatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Zakat $zakat)
     {
-        //
+        $zakat->delete();
+        return redirect()->route('zakat.index')->with('alert', 'Data berhasil dihapus');
     }
 }
