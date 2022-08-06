@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/zakat/excel', [App\Http\Controllers\PembayaranZakatController::class, 'excel'])->name('zakat.excel');
+    Route::get('/zakat/invoice/{zakat}', [App\Http\Controllers\PembayaranZakatController::class, 'invoice'])->name('zakat.invoice');
     Route::resource('dashboard', DashboardController::class);
     Route::resource('zakat', PembayaranZakatController::class);
 });

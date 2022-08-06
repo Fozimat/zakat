@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Zakat;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class PembayaranZakatController extends Controller
 {
@@ -19,6 +20,12 @@ class PembayaranZakatController extends Controller
     {
         $zakat = Zakat::orderBy('id', 'DESC')->get();
         return view('zakat.index', compact(['zakat']));
+    }
+
+    public function invoice(Zakat $zakat)
+    {
+        $pdf = PDF::loadview('zakat.invoce', compact(['zakat']))->setPaper('A4', 'landscape');
+        return $pdf->stream();
     }
 
     public function excel()

@@ -73,6 +73,10 @@
                                 <td>@format_angka($z->zakat_fidyah)</td>
                                 <td>@format_angka($z->infaq)</td>
                                 <td>
+                                    <a target="_blank" href="{{ route('zakat.invoice', $z->id) }}">
+                                        <button class="btn btn-icon btn-success btn-rounded">
+                                            <i class="anticon anticon-printer"></i> </button>
+                                    </a>
                                     <a href="{{ route('zakat.edit', $z->id) }}">
                                         <button class="btn btn-icon btn-warning btn-rounded">
                                             <i class="anticon anticon-edit"></i>
