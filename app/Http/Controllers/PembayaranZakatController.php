@@ -24,7 +24,7 @@ class PembayaranZakatController extends Controller
 
     public function invoice(Zakat $zakat)
     {
-        $pdf = PDF::loadview('zakat.invoce', compact(['zakat']))->setPaper('A4', 'landscape');
+        $pdf = PDF::loadview('zakat.invoice', compact(['zakat']))->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
 

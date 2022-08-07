@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown open">
-                <a class="dropdown-toggle" href="javascript:void(0);">
+                <a class="dropdown-toggle" href="{{ route('laporan.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-file"></i>
                     </span>

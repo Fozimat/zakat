@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PembayaranZakatController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PembayaranZakatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/zakat/excel', [App\Http\Controllers\PembayaranZakatController::class, 'excel'])->name('zakat.excel');
     Route::get('/zakat/invoice/{zakat}', [App\Http\Controllers\PembayaranZakatController::class, 'invoice'])->name('zakat.invoice');
+    Route::post('/laporan/keseluruhan', [App\Http\Controllers\LaporanController::class, 'cetakKeseluruhan'])->name('laporan.keseluruhan');
     Route::resource('dashboard', DashboardController::class);
     Route::resource('zakat', PembayaranZakatController::class);
+    Route::resource('laporan', LaporanController::class);
 });
 Auth::routes();
