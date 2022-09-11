@@ -99,7 +99,7 @@
                     <p class="fs-15">:</p>
                 </td>
                 <td>
-                    <p class="fs-15">{{ $zakat->nama }}</p>
+                    <p class="fs-15">{{ $zakat->muzakki->nama }}</p>
                 </td>
             </tr>
             <tr>
@@ -110,7 +110,7 @@
                     <p class="fs-15">:</p>
                 </td>
                 <td>
-                    <p class="fs-15">{{ $zakat->alamat }}</p>
+                    <p class="fs-15">{{ $zakat->muzakki->alamat }}</p>
                 </td>
             </tr>
             <tr>

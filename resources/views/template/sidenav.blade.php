@@ -2,7 +2,7 @@
     <div class="side-nav-inner">
         <ul class="side-nav-menu scrollable">
             <li class="nav-item dropdown open">
-                <a class="dropdown-toggle" href="javascript:void(0);">
+                <a class="dropdown-toggle" href="{{ route('dashboard.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-dashboard"></i>
                     </span>
@@ -13,7 +13,7 @@
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('muzakki.index') }}">
                     <span class="icon-holder">
-                        <i class="anticon anticon-form"></i>
+                        <i class="anticon anticon-user"></i>
                     </span>
                     <span class="title">Data Muzakki</span>
                 </a>
@@ -21,7 +21,7 @@
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="#">
                     <span class="icon-holder">
-                        <i class="anticon anticon-form"></i>
+                        <i class="anticon anticon-solution"></i>
                     </span>
                     <span class="title">Data Amil Zakat</span>
                 </a>
@@ -29,7 +29,7 @@
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('zakat.index') }}">
                     <span class="icon-holder">
-                        <i class="anticon anticon-form"></i>
+                        <i class="anticon anticon-file"></i>
                     </span>
                     <span class="title">Pembayaran Zakat</span>
                 </a>
@@ -37,7 +37,7 @@
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('laporan.index') }}">
                     <span class="icon-holder">
-                        <i class="anticon anticon-file"></i>
+                        <i class="anticon anticon-printer"></i>
                     </span>
                     <span class="title">Laporan</span>
                 </a>
