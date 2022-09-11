@@ -41,6 +41,9 @@
         <tbody>
             @php
             $total_zakat_fitrah = $total_zakat_beras = $total_mal = $total_fidyah = $total_infaq = 0;
+            $total_keseluruhan_zakat_fitrah_beras = $total_keseluruhan_zakat_fitrah_uang = $total_keseluruhan_zakat_mal
+            =
+            $total_keseluruhan_zakat_fidyah = $total_keseluruhan_infaq = 0;
             @endphp
             @foreach ($zakat as $key => $data)
             @php
@@ -76,7 +79,22 @@
             $total_zakat_fitrah = $total_zakat_beras = $total_mal = $total_fidyah = $total_infaq = 0;
             @endphp
             @endif
+            @php
+            $total_keseluruhan_zakat_fitrah_beras += $data->zakat_fitrah_beras;
+            $total_keseluruhan_zakat_fitrah_uang += $data->total_zakat_fitrah_uang;
+            $total_keseluruhan_zakat_mal += $data->zakat_mal;
+            $total_keseluruhan_zakat_fidyah += $data->zakat_fidyah;
+            $total_keseluruhan_infaq += $data->infaq;
+            @endphp
             @endforeach
+            <tr>
+                <td colspan="6" class="text-center"><strong>Total Keseluruhan</strong></td>
+                <td><strong>@format_angka($total_keseluruhan_zakat_fitrah_beras) Kg</strong></td>
+                <td><strong>@format_angka($total_keseluruhan_zakat_fitrah_uang)</strong></td>
+                <td><strong>@format_angka($total_keseluruhan_zakat_mal)</strong></td>
+                <td><strong>@format_angka($total_keseluruhan_zakat_fidyah)</strong></td>
+                <td><strong>@format_angka($total_keseluruhan_infaq)</strong></td>
+            </tr>
         </tbody>
     </table>
 </body>
