@@ -65,7 +65,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $z->no_transaksi }}</td>
                                 <td>{{ $z->tanggal_transaksi->isoFormat('D MMMM Y') }}</td>
-                                <td>{{ $z->nama }}</td>
+                                <td>{{ $z->muzakki->nama }}</td>
                                 <td>{{ $z->jumlah_jiwa }}</td>
                                 <td>@format_angka($z->total_zakat_fitrah_uang)</td>
                                 <td>@format_angka($z->zakat_fitrah_beras)</td>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ZakatExport;
+use PDF;
 use Carbon\Carbon;
 use App\Models\Zakat;
+use App\Models\Muzakki;
+use App\Exports\ZakatExport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use PDF;
 
 class PembayaranZakatController extends Controller
 {
@@ -18,7 +19,7 @@ class PembayaranZakatController extends Controller
      */
     public function index()
     {
-        $zakat = Zakat::orderBy('id', 'DESC')->get();
+        $zakat = Zakat::with(['muzakki'])->orderBy('id', 'DESC')->get();
         return view('zakat.index', compact(['zakat']));
     }
 
@@ -44,7 +45,8 @@ class PembayaranZakatController extends Controller
         $number = Zakat::max('id') + 1;
         $generate = str_pad($number, 4, '0', STR_PAD_LEFT);
         $generate_no_transaksi = $today . $generate;
-        return view('zakat.create', compact(['generate_no_transaksi']));
+        $muzakki = Muzakki::orderBy('id', 'DESC')->get();
+        return view('zakat.create', compact(['generate_no_transaksi', 'muzakki']));
     }
 
     /**
@@ -80,7 +82,8 @@ class PembayaranZakatController extends Controller
      */
     public function edit(Zakat $zakat)
     {
-        return view('zakat.edit', compact(['zakat']));
+        $muzakki = Muzakki::orderBy('id', 'DESC')->get();
+        return view('zakat.edit', compact(['zakat', 'muzakki']));
     }
 
     /**

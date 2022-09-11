@@ -73,15 +73,15 @@
                     <div class="form-group row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input required type="text" class="form-control" id="nama" name="nama" autocomplete="off"
-                                value="{{ $zakat->nama }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <div class="col-sm-10">
-                            <textarea required class="form-control" name="alamat" id="alamat" rows="3"
-                                autocomplete="off">{{ $zakat->alamat }}</textarea>
+                            <div class="m-b-15">
+                                <select class="select2" required class="form-control" name="muzakki_id" id="muzakki_id">
+                                    <option value="">--Pilih--</option>
+                                    @foreach ($muzakki as $muz)
+                                    <option value="{{ $muz->id }}" {{ $muz->id == $zakat->muzakki_id ? 'selected' : ''
+                                        }}>{{ $muz->nama }} - {{ $muz->nik }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">

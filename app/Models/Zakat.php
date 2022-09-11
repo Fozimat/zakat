@@ -11,4 +11,9 @@ class Zakat extends Model
     protected $table = 'zakat';
     protected $guarded  = [''];
     protected $dates = ['tanggal_transaksi'];
+
+    public function muzakki()
+    {
+        return $this->belongsTo(Muzakki::class, 'muzakki_id', 'id');
+    }
 }

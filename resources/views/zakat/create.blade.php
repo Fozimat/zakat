@@ -2,11 +2,15 @@
 
 @push('style')
 <link href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/select2/select2.css') }}" rel="stylesheet">
 @endpush
 
 @push('script')
 <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
+
 <script>
+    $('.select2').select2();
     $('.datepicker-input').datepicker({
         format: 'mm/dd/yyyy',
         locale: 'en'
@@ -71,14 +75,14 @@
                     <div class="form-group row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input required type="text" class="form-control" id="nama" name="nama" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <div class="col-sm-10">
-                            <textarea required class="form-control" name="alamat" id="alamat" rows="3"
-                                autocomplete="off"></textarea>
+                            <div class="m-b-15">
+                                <select class="select2" required class="form-control" name="muzakki_id" id="muzakki_id">
+                                    <option value="">--Pilih--</option>
+                                    @foreach ($muzakki as $muz)
+                                    <option value="{{ $muz->id }}">{{ $muz->nama }} - {{ $muz->nik }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
