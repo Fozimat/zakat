@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Zakat;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +14,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $total_zakat_fitrah = Zakat::sum('total_zakat_fitrah_uang');
+        $total_zakat_mal = Zakat::sum('zakat_mal');
+        $total_zakat_fidyah = Zakat::sum('zakat_fidyah');
+        $total_infaq = Zakat::sum('infaq');
+        return view('dashboard.index', compact(['total_zakat_fitrah', 'total_zakat_mal', 'total_zakat_fidyah', 'total_infaq']));
     }
 
     /**

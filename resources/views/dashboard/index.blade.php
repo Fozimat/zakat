@@ -10,8 +10,8 @@
                             <i class="anticon anticon-dollar"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">$23,523</h2>
-                            <p class="m-b-0 text-muted">Profit</p>
+                            <h2 class="m-b-0">@format_angka($total_zakat_fitrah)</h2>
+                            <p class="m-b-0 text-muted">Total Zakat Fitrah</p>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
                             <i class="anticon anticon-line-chart"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">+ 17.21%</h2>
-                            <p class="m-b-0 text-muted">Growth</p>
+                            <h2 class="m-b-0">@format_angka($total_zakat_mal)</h2>
+                            <p class="m-b-0 text-muted">Total Zakat Mal</p>
                         </div>
                     </div>
                 </div>
@@ -40,8 +40,8 @@
                             <i class="anticon anticon-profile"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">3,685</h2>
-                            <p class="m-b-0 text-muted">Orders</p>
+                            <h2 class="m-b-0">@format_angka($total_zakat_fidyah)</h2>
+                            <p class="m-b-0 text-muted">Total Zakat Fidyah</p>
                         </div>
                     </div>
                 </div>
@@ -55,15 +55,15 @@
                             <i class="anticon anticon-user"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">1,832</h2>
-                            <p class="m-b-0 text-muted">Customers</p>
+                            <h2 class="m-b-0">@format_angka($total_infaq)</h2>
+                            <p class="m-b-0 text-muted">Total Infaq</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-body">
@@ -131,6 +131,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
