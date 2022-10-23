@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown open">
-                <a class="dropdown-toggle" href="#">
+                <a class="dropdown-toggle" href="{{ route('amil.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-solution"></i>
                     </span>

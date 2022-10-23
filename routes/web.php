@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AmilController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LaporanController;
@@ -18,19 +19,18 @@ use App\Http\Controllers\PembayaranZakatController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
     Route::get('/zakat/excel', [App\Http\Controllers\PembayaranZakatController::class, 'excel'])->name('zakat.excel');
     Route::get('/zakat/invoice/{zakat}', [App\Http\Controllers\PembayaranZakatController::class, 'invoice'])->name('zakat.invoice');
     Route::post('/laporan/keseluruhan', [App\Http\Controllers\LaporanController::class, 'cetakKeseluruhan'])->name('laporan.keseluruhan');
     Route::resource('dashboard', DashboardController::class);
     Route::resource('muzakki', MuzakkiController::class);
     Route::resource('zakat', PembayaranZakatController::class);
+    Route::resource('amil', AmilController::class);
     Route::resource('laporan', LaporanController::class);
 });
 Auth::routes();

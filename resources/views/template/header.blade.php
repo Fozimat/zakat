@@ -38,8 +38,8 @@
                                 <img src="{{ asset('assets/images/avatars/thumb-3.jpg') }}" alt="">
                             </div>
                             <div class="m-l-10">
-                                <p class="m-b-0 text-dark font-weight-semibold">Marshall Nichols</p>
-                                <p class="m-b-0 opacity-07">UI/UX Desinger</p>
+                                <p class="m-b-0 text-dark font-weight-semibold">{{ Auth::user()->nama }}</p>
+                                <p class="m-b-0 opacity-07">Amil Zakat</p>
                             </div>
                         </div>
                     </div>

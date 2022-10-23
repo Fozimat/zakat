@@ -152,7 +152,7 @@
             </tr>
         </tbody>
     </table>
-    <table style="margin-left: 750px;margin-top:10px;text-align: center;">
+    <table style="margin-left: 750px;text-align: center;">
         <tr>
             <td class="fs-14 text-right">Tanjungpinang, {{ \Carbon\Carbon::now()->isoFormat('DD MMMM Y') }}</td>
         </tr>
@@ -160,10 +160,13 @@
             <td style="margin-left: 730px;" class="fs-14">Panitia,</td>
         </tr>
         <tr>
-            <td style="height: 70px;"></td>
+            <td style="height: 45px;"></td>
         </tr>
         <tr>
             <td class="fs-14">_______________________</td>
+        </tr>
+        <tr>
+            <td class="fs-14">({{ Auth::user()->nama }})</td>
         </tr>
     </table>
 </body>
