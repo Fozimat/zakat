@@ -54,7 +54,7 @@
                                 <th>Fitrah(Uang)</th>
                                 <th>Fitrah(Beras)</th>
                                 <th>Zakat Mal</th>
-                                <th>Zakat Fidyah</th>
+                                <th>Fidyah</th>
                                 <th>Infaq</th>
                                 <th>Aksi</th>
                             </tr>

@@ -41,7 +41,7 @@
                         </div>
                         <div class="m-l-15">
                             <h2 class="m-b-0">@format_angka($total_zakat_fidyah)</h2>
-                            <p class="m-b-0 text-muted">Total Zakat Fidyah</p>
+                            <p class="m-b-0 text-muted">Total Fidyah</p>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laporan</title>
+    <title>{{ $zakat->no_transaksi }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -136,7 +136,7 @@
                     <p class="fs-15">1a. ZAKAT FITRAH (Uang) : Rp. @format_angka($zakat->total_zakat_fitrah_uang)</p>
                     <p class="fs-15"> 1b. ZAKAT FITRAH (Beras) : @format_angka($zakat->zakat_fitrah_beras) Kg</p>
                     <p class="fs-15">2. ZAKAT MAL : Rp. @format_angka($zakat->zakat_mal)</p>
-                    <p class="fs-15">3. ZAKAT FIDYAH : Rp. @format_angka($zakat->zakat_fidyah)</p>
+                    <p class="fs-15">3. FIDYAH : Rp. @format_angka($zakat->zakat_fidyah)</p>
                 </td>
             </tr>
             <tr>
