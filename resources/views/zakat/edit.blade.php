@@ -24,12 +24,30 @@
             $('#show_fitrah_uang').addClass('d-none');
         }
     });
-    $('#zakat_fitrah_uang, #jumlah_jiwa').keyup(function() {
+    $('#zakat_fitrah_uang, #jumlah_jiwa, #zakat_mal, #hari_fidyah, #infaq').keyup(function() {
         let jumlah_jiwa = $('#jumlah_jiwa').val();
         let zakat_fitrah_uang = $('#zakat_fitrah_uang').val();
         let total_zakat_fitrah_uang = parseInt(jumlah_jiwa) * 2.5 * parseInt(zakat_fitrah_uang);
+
+        let zakat_mal = $('#zakat_mal').val();
+        let hari_fidyah = $('#hari_fidyah').val();
+        let infaq = $('#infaq').val();
+
+        let total_fidyah = 50000 * hari_fidyah;
+
+        let total_keseluruhan = total_zakat_fitrah_uang + parseFloat(zakat_mal) + parseFloat(total_fidyah) + parseFloat(infaq);
+        $('#total_keseluruhan').val(total_keseluruhan);
+
         $('#total_zakat_fitrah_uang').val(total_zakat_fitrah_uang);
+        $('#zakat_fidyah').val(total_fidyah);
     });        
+
+    $('#bayar').keyup(function() {
+       let total_keseluruhan = $('#total_keseluruhan').val();
+       let bayar = $('#bayar').val();
+       let kembalian = parseFloat(bayar) - parseFloat(total_keseluruhan);
+        $('#kembali').val(kembalian);
+    });
 });
 </script>
 @endpush
@@ -134,10 +152,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="zakat_fidyah" class="col-sm-2 col-form-label">Zakat Fidyah</label>
-                        <div class="col-sm-10">
-                            <input required type="number" class="form-control" id="zakat_fidyah" name="zakat_fidyah"
-                                autocomplete="off" value="{{ $zakat->zakat_fidyah }}">
+                        <label for="hari_fidyah" class="col-sm-2 col-form-label">Fidyah</label>
+                        <div class="col-sm-5">
+                            <input value="0" type="number" class="form-control" id="hari_fidyah" name="hari_fidyah">
+                        </div>
+                        <div class="col-sm-5">
+                            <input placeholder="Total Fidyah" required type="number" class="form-control"
+                                id="zakat_fidyah" name="zakat_fidyah" autocomplete="off" readonly
+                                value="{{ $zakat->zakat_fidyah }}">
                         </div>
                     </div>
                     <div class="form-group row">
