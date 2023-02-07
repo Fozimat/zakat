@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Zakat;
 use App\Models\Muzakki;
 use App\Exports\ZakatExport;
+use App\Models\JumlahJiwa;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -60,6 +61,16 @@ class PembayaranZakatController extends Controller
         $data = $request->all();
         $data['tanggal_transaksi'] = Carbon::createFromFormat('m/d/Y', $request->tanggal_transaksi)->format('Y-m-d');
         Zakat::create($data);
+        $zakat = Zakat::latest('id')->first();
+        $array = [];
+        $jumlah_jiwa = $request->anggota_keluarga;
+        foreach ($jumlah_jiwa as $nama) {
+            array_push($array, [
+                'zakat_id' => $zakat->id,
+                'nama' => $nama
+            ]);
+        }
+        JumlahJiwa::insert($array);
         return redirect()->route('zakat.index')->with('alert', 'Data berhasil ditambahkan');
     }
 
@@ -96,6 +107,16 @@ class PembayaranZakatController extends Controller
     public function update(Request $request, Zakat $zakat)
     {
         $data = $request->all();
+        JumlahJiwa::where('zakat_id', $zakat->id)->delete();
+        $array = [];
+        $jumlah_jiwa = $request->anggota_keluarga;
+        foreach ($jumlah_jiwa as $nama) {
+            array_push($array, [
+                'zakat_id' => $zakat->id,
+                'nama' => $nama
+            ]);
+        }
+        JumlahJiwa::insert($array);
         $data['tanggal_transaksi'] = Carbon::createFromFormat('m/d/Y', $request->tanggal_transaksi)->format('Y-m-d');
         $zakat->update($data);
         return redirect()->route('zakat.index')->with('alert', 'Data berhasil diedit');
@@ -109,6 +130,7 @@ class PembayaranZakatController extends Controller
      */
     public function destroy(Zakat $zakat)
     {
+        $zakat->anggota_keluarga()->delete();
         $zakat->delete();
         return redirect()->route('zakat.index')->with('alert', 'Data berhasil dihapus');
     }

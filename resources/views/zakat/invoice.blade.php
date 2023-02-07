@@ -9,6 +9,11 @@
 
 <body>
     <style type="text/css">
+        tr td {
+            padding: 4px !important;
+            margin: 0 !important;
+        }
+
         table tr td,
         table tr th {
             font-size: 9pt;
@@ -31,15 +36,15 @@
         }
 
         .fs-15 {
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .fs-14 {
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .fs-12 {
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .td-1 {
@@ -152,7 +157,17 @@
             </tr>
         </tbody>
     </table>
-    <table style="margin-left: 750px;text-align: center;">
+    <table class="fs-15">
+        <tr>
+            <td>Daftar Keluarga:</td>
+        </tr>
+        @foreach ($zakat->anggota_keluarga as $key => $nama)
+        <tr>
+            <td>{{ $key + 1 }}. {{ $nama->nama }}</td>
+        </tr>
+        @endforeach
+    </table>
+    <table style="margin-left: 750px;margin-top: -200px;text-align: center;">
         <tr>
             <td class="fs-14 text-right">Tanjungpinang, {{ \Carbon\Carbon::now()->isoFormat('DD MMMM Y') }}</td>
         </tr>

@@ -13,7 +13,24 @@
     });
 </script>
 <script>
-    $(document).ready(function () {                            
+    $(document).ready(function () {        
+        
+    $('#jumlah_jiwa').keyup(function() {
+        let jumlah_jiwa = this.value;
+        $('#jumlahDinamis').text('');
+        for(let i = 1; i < jumlah_jiwa; i++) {
+            $('#jumlahDinamis').append(`
+                <div class="form-group row">
+                        <label for="anggota_keluarga" class="col-sm-2 col-form-label">Ke-${i}</label>
+                        <div class="col-sm-10">
+                            <input required type="text" class="form-control" id="anggota_keluarga${i}" name="anggota_keluarga[]"
+                                autocomplete="off">
+                        </div>
+                </div>
+            `);
+        }
+    });
+
     $("#radio1, #radio2").change(function () {
         if ($("#radio1").is(":checked")) {
             $('#show_fitrah_uang').removeClass('d-none');
@@ -108,6 +125,19 @@
                             <input required type="number" class="form-control" id="jumlah_jiwa" name="jumlah_jiwa"
                                 autocomplete="off" value="{{ $zakat->jumlah_jiwa }}">
                         </div>
+                    </div>
+                    <div id="jumlahDinamis">
+                        @foreach ($zakat->anggota_keluarga as $nama)
+                        <div class="form-group row">
+                            <label for="anggota_keluarga" class="col-sm-2 col-form-label">Ke-{{ $loop->index + 1
+                                }}</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control"
+                                    id="anggota_keluarga{{ $loop->index + 1 }}" name="anggota_keluarga[]"
+                                    autocomplete="off" value="{{ $nama->nama }}">
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10 offset-sm-2">
