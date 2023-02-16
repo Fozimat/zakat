@@ -64,13 +64,15 @@ class PembayaranZakatController extends Controller
         $zakat = Zakat::latest('id')->first();
         $array = [];
         $jumlah_jiwa = $request->anggota_keluarga;
-        foreach ($jumlah_jiwa as $nama) {
-            array_push($array, [
-                'zakat_id' => $zakat->id,
-                'nama' => $nama
-            ]);
+        if ($jumlah_jiwa > 1) {
+            foreach ($jumlah_jiwa as $nama) {
+                array_push($array, [
+                    'zakat_id' => $zakat->id,
+                    'nama' => $nama
+                ]);
+            }
+            JumlahJiwa::insert($array);
         }
-        JumlahJiwa::insert($array);
         return redirect()->route('zakat.index')->with('alert', 'Data berhasil ditambahkan');
     }
 

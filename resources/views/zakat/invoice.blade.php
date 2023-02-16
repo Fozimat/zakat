@@ -158,6 +158,7 @@
         </tbody>
     </table>
     <table class="fs-15">
+        @if ($zakat->anggota_keluarga()->exists())
         <tr>
             <td>Daftar Keluarga:</td>
         </tr>
@@ -166,6 +167,7 @@
             <td>{{ $key + 1 }}. {{ $nama->nama }}</td>
         </tr>
         @endforeach
+        @endif
     </table>
     <table style="margin-left: 750px;margin-top: -200px;text-align: center;">
         <tr>
