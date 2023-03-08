@@ -20,7 +20,7 @@ class PembayaranZakatController extends Controller
      */
     public function index()
     {
-        $zakat = Zakat::with(['muzakki'])->orderBy('id', 'DESC')->get();
+        $zakat = Zakat::with(['muzakki', 'amil'])->orderBy('id', 'DESC')->get();
         return view('zakat.index', compact(['zakat']));
     }
 
@@ -112,13 +112,15 @@ class PembayaranZakatController extends Controller
         JumlahJiwa::where('zakat_id', $zakat->id)->delete();
         $array = [];
         $jumlah_jiwa = $request->anggota_keluarga;
-        foreach ($jumlah_jiwa as $nama) {
-            array_push($array, [
-                'zakat_id' => $zakat->id,
-                'nama' => $nama
-            ]);
+        if ($jumlah_jiwa > 1) {
+            foreach ($jumlah_jiwa as $nama) {
+                array_push($array, [
+                    'zakat_id' => $zakat->id,
+                    'nama' => $nama
+                ]);
+            }
+            JumlahJiwa::insert($array);
         }
-        JumlahJiwa::insert($array);
         $data['tanggal_transaksi'] = Carbon::createFromFormat('m/d/Y', $request->tanggal_transaksi)->format('Y-m-d');
         $zakat->update($data);
         return redirect()->route('zakat.index')->with('alert', 'Data berhasil diedit');

@@ -96,6 +96,9 @@
                         <div class="col-sm-10">
                             <input readonly type="text" value="{{ $generate_no_transaksi }}" class="form-control"
                                 id="no_transaksi" name="no_transaksi" autocomplete="off">
+
+                            <input readonly type="hidden" value="{{ Auth::user()->id }}" class="form-control"
+                                id="user_id" name="user_id" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">

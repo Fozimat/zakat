@@ -17,6 +17,11 @@ class Zakat extends Model
         return $this->belongsTo(Muzakki::class, 'muzakki_id', 'id');
     }
 
+    public function amil()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function anggota_keluarga()
     {
         return $this->hasMany(JumlahJiwa::class, 'zakat_id', 'id');

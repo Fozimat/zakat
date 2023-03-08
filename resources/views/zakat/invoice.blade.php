@@ -183,7 +183,7 @@
             <td class="fs-14">_______________________</td>
         </tr>
         <tr>
-            <td class="fs-14">({{ Auth::user()->nama }})</td>
+            <td class="fs-14">({{ $zakat->amil->nama }})</td>
         </tr>
     </table>
 </body>
