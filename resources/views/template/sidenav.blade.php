@@ -35,6 +35,14 @@
                 </a>
             </li>
             <li class="nav-item dropdown open">
+                <a class="dropdown-toggle" href="{{ route('zakat_mal.index') }}">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-file"></i>
+                    </span>
+                    <span class="title">Perhitungan Zakat Mal</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('laporan.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-printer"></i>
