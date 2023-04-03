@@ -35,6 +35,12 @@
             }
         });
 
+        function hitungFitrahBeras() {
+            let jumlah_jiwa = $('#jumlah_jiwa').val();
+            let total_fitrah_beras = parseFloat(jumlah_jiwa) * 2.5;
+            $('#zakat_fitrah_beras').val(total_fitrah_beras);
+        }
+
         $("#radio1, #radio2").change(function () {
             if ($("#radio1").is(":checked")) {
                 $('#show_fitrah_uang').removeClass('d-none');
@@ -43,6 +49,7 @@
             else {
                 $('#show_fitrah_beras').removeClass('d-none');
                 $('#show_fitrah_uang').addClass('d-none');
+                hitungFitrahBeras();
             }
         });
 
@@ -58,6 +65,7 @@
             let total_fidyah = 50000 * hari_fidyah;
 
             let total_keseluruhan = total_zakat_fitrah_uang + parseFloat(zakat_mal) + parseFloat(total_fidyah) + parseFloat(infaq);
+            hitungFitrahBeras();
             $('#total_keseluruhan').val(total_keseluruhan);
 
             $('#total_zakat_fitrah_uang').val(total_zakat_fitrah_uang);
@@ -160,8 +168,8 @@
                     <div class="form-group row d-none" id="show_fitrah_beras">
                         <label for="zakat_fitrah_beras" class="col-sm-2 col-form-label">Zakat Fitrah (Beras)</label>
                         <div class="col-sm-10">
-                            <input type="number" value="0" class="form-control" id="zakat_fitrah_beras"
-                                name="zakat_fitrah_beras" autocomplete="off" placeholder="Kg">
+                            <input type="number" class="form-control" id="zakat_fitrah_beras" name="zakat_fitrah_beras"
+                                autocomplete="off" placeholder="Kg..." readonly>
                         </div>
                     </div>
                     <div class="form-group row">

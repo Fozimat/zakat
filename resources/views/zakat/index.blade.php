@@ -69,7 +69,7 @@
                                 <td>{{ $z->muzakki->nama }}</td>
                                 <td>{{ $z->jumlah_jiwa }}</td>
                                 <td>@format_angka($z->total_zakat_fitrah_uang)</td>
-                                <td>@format_angka($z->zakat_fitrah_beras)</td>
+                                <td>{{ $z->zakat_fitrah_beras != 0 ? $z->zakat_fitrah_beras . ' Kg' : 0}}</td>
                                 <td>@format_angka($z->zakat_mal)</td>
                                 <td>@format_angka($z->zakat_fidyah)</td>
                                 <td>@format_angka($z->infaq)</td>
