@@ -87,11 +87,15 @@
                                             <i class="anticon anticon-edit"></i>
                                         </button>
                                     </a>
-                                    <button type="button" data-toggle="modal" data-target="#hapusZakat"
-                                        class="btn btn-icon btn-danger btn-rounded">
-                                        <i class="anticon anticon-delete"></i>
-                                    </button>
-                                    @endif
+                                    <form action="{{ route('zakat.destroy', $z->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Apakah anda yakin?')" type="submit"
+                                            class="btn btn-icon btn-danger btn-rounded">
+                                            <i class="anticon anticon-delete"></i>
+                                        </button>
+                                        <form>
+                                            @endif
                                 </td>
                             </tr>
                             <div class="modal fade" id="hapusZakat">

@@ -35,6 +35,20 @@
     </div>
     @endif
 
+    @if (session('alert_fail'))
+    <div class="alert alert-danger alert-dismissible fade show">
+        <div class="d-flex align-items-center justify-content-start">
+            <span class="alert-icon">
+                <i class="anticon anticon-check-o"></i>
+            </span>
+            <span>{{ session('alert_fail') }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    @endif
+
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
@@ -59,15 +73,19 @@
                                 <td>{{ $ami->nama }}</td>
                                 <td>{{ $ami->email }}</td>
                                 <td>
-                                    <a href="{{ route('amil.edit', $ami->id) }}">
+                                    {{-- <a href="{{ route('amil.edit', $ami->id) }}">
                                         <button class="btn btn-icon btn-warning btn-rounded">
                                             <i class="anticon anticon-edit"></i>
                                         </button>
-                                    </a>
-                                    <button type="button" data-toggle="modal" data-target="#hapusZakat"
-                                        class="btn btn-icon btn-danger btn-rounded">
-                                        <i class="anticon anticon-delete"></i>
-                                    </button>
+                                    </a> --}}
+                                    <form action="{{ route('amil.destroy', $ami->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Apakah anda yakin?')" type="submit"
+                                            class="btn btn-icon btn-danger btn-rounded">
+                                            <i class="anticon anticon-delete"></i>
+                                        </button>
+                                        <form>
                                 </td>
                             </tr>
                             <div class="modal fade" id="hapusZakat">

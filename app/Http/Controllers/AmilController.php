@@ -92,8 +92,15 @@ class AmilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $amil)
     {
-        //
+        $relasi = ['zakat'];
+        foreach ($relasi as $rel) {
+            if ($amil->$rel->count() > 0) {
+                return redirect()->route('amil.index')->with('alert_fail', 'Data gagal dihapus. Data digunakan ditabel lain.');
+            }
+        }
+        $amil->delete();
+        return redirect()->route('amil.index')->with('alert', ' Data berhasil dihapus');
     }
 }

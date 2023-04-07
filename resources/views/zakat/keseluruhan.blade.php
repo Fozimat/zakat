@@ -163,9 +163,9 @@
                 <td>@format_angka($data->infaq)</td>
                 @endif
             </tr>
-            @if (@$zakat[$key+1]['tanggal_transaksi'] != $data['tanggal_transaksi'])
+            @if (@$zakat[$key+1]['tahun'] != $data['tahun'])
             <tr>
-                <td colspan="5" class="text-center"><strong>Total</strong></td>
+                <td colspan="5" class="text-center"><strong>Total {{ $data['tahun'] }}</strong></td>
                 @if(request()->has('check_beras'))
                 <td><strong>{{ $total_zakat_beras }} Kg</strong></td>
                 @endif

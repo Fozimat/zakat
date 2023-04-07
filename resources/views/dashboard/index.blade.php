@@ -25,7 +25,7 @@
                             <i class="anticon anticon-dollar"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">@format_angka($total_zakat_fitrah_beras) Kg</h2>
+                            <h2 class="m-b-0">{{ $total_zakat_fitrah_beras }} Kg</h2>
                             <p class="m-b-0 text-muted">Total Zakat Fitrah</p>
                         </div>
                     </div>

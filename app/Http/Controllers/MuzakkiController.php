@@ -83,6 +83,12 @@ class MuzakkiController extends Controller
      */
     public function destroy(Muzakki $muzakki)
     {
+        $relasi = ['zakat'];
+        foreach ($relasi as $rel) {
+            if ($muzakki->$rel->count() > 0) {
+                return redirect()->route('muzakki.index')->with('alert_fail', 'Data gagal dihapus. Data digunakan ditabel lain.');
+            }
+        }
         $muzakki->delete();
         return redirect()->route('muzakki.index')->with('alert', ' Data berhasil dihapus');
     }

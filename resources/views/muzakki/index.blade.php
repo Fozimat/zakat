@@ -21,6 +21,7 @@
             </nav>
         </div>
     </div>
+
     @if (session('alert'))
     <div class="alert alert-success alert-dismissible fade show">
         <div class="d-flex align-items-center justify-content-start">
@@ -28,6 +29,21 @@
                 <i class="anticon anticon-check-o"></i>
             </span>
             <span>{{ session('alert') }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    @endif
+
+
+    @if (session('alert_fail'))
+    <div class="alert alert-danger alert-dismissible fade show">
+        <div class="d-flex align-items-center justify-content-start">
+            <span class="alert-icon">
+                <i class="anticon anticon-check-o"></i>
+            </span>
+            <span>{{ session('alert_fail') }}</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -71,10 +87,14 @@
                                             <i class="anticon anticon-edit"></i>
                                         </button>
                                     </a>
-                                    <button type="button" data-toggle="modal" data-target="#hapusZakat"
-                                        class="btn btn-icon btn-danger btn-rounded">
-                                        <i class="anticon anticon-delete"></i>
-                                    </button>
+                                    <form action="{{ route('muzakki.destroy', $muz->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Apakah anda yakin?')" type="submit"
+                                            class="btn btn-icon btn-danger btn-rounded">
+                                            <i class="anticon anticon-delete"></i>
+                                        </button>
+                                        <form>
                                 </td>
                                 @endif
                             </tr>

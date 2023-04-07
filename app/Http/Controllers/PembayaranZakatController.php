@@ -60,6 +60,8 @@ class PembayaranZakatController extends Controller
     {
         $data = $request->all();
         $data['tanggal_transaksi'] = Carbon::createFromFormat('m/d/Y', $request->tanggal_transaksi)->format('Y-m-d');
+        $data['tahun'] = Carbon::createFromFormat('m/d/Y', $request->tanggal_transaksi)->format('Y');
+        // dd($data['tahun']);
         Zakat::create($data);
         $zakat = Zakat::latest('id')->first();
         $array = [];
