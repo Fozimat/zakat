@@ -65,10 +65,44 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="sampai_tanggal" class="col-sm-2 col-form-label">Filter</label>
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Cetak</button>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Zakat Fitrah (uang)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Zakat Fitrah (beras)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Zakat Mal
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Zakat Fidyah
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Infaq
+                                </label>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Cetak</button>
+                            </div>
+                        </div>
                 </form>
             </div>
         </div>

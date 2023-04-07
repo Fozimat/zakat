@@ -39,7 +39,9 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <h4>DATA MUZAKKI</h4>
+                @if(Auth::user()->level == 'ADMIN')
                 <a href="{{ route('muzakki.create') }}" class="btn btn-secondary">Tambah Data</a>
+                @endif
             </div>
             <div class="m-t-25">
                 <div class="table-responsive">
@@ -50,7 +52,9 @@
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
+                                @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +64,7 @@
                                 <td>{{ $muz->nik }}</td>
                                 <td>{{ $muz->nama }}</td>
                                 <td>{{ $muz->alamat }}</td>
+                                @if(Auth::user()->level == 'ADMIN')
                                 <td>
                                     <a href="{{ route('muzakki.edit', $muz->id) }}">
                                         <button class="btn btn-icon btn-warning btn-rounded">
@@ -71,6 +76,7 @@
                                         <i class="anticon anticon-delete"></i>
                                     </button>
                                 </td>
+                                @endif
                             </tr>
                             <div class="modal fade" id="hapusZakat">
                                 <div class="modal-dialog">
@@ -124,7 +130,9 @@
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
+                                @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>

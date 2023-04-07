@@ -39,7 +39,7 @@
                             </div>
                             <div class="m-l-10">
                                 <p class="m-b-0 text-dark font-weight-semibold">{{ Auth::user()->nama }}</p>
-                                <p class="m-b-0 opacity-07">Amil Zakat</p>
+                                <p class="m-b-0 opacity-07">{{ Str::title(Auth::user()->level) }}</p>
                             </div>
                         </div>
                     </div>

@@ -39,7 +39,9 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <h4>PEMBAYARAN ZAKAT</h4>
+                @if(Auth::user()->level == 'ADMIN')
                 <a href="{{ route('zakat.create') }}" class="btn btn-secondary">Tambah Data</a>
+                @endif
             </div>
             <div class="m-t-25">
                 <div class="table-responsive">
@@ -57,7 +59,9 @@
                                 <th>Fidyah</th>
                                 <th>Infaq</th>
                                 <th>Amil Zakat</th>
+                                @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +78,7 @@
                                 <td>@format_angka($z->zakat_fidyah)</td>
                                 <td>@format_angka($z->infaq)</td>
                                 <td>{{ $z->amil->nama }}</td>
+                                @if(Auth::user()->level == 'ADMIN')
                                 <td>
                                     <a target="_blank" href="{{ route('zakat.invoice', $z->id) }}">
                                         <button class="btn btn-icon btn-success btn-rounded">
@@ -89,6 +94,7 @@
                                         <i class="anticon anticon-delete"></i>
                                     </button>
                                 </td>
+                                @endif
                             </tr>
                             <div class="modal fade" id="hapusZakat">
                                 <div class="modal-dialog">
@@ -146,9 +152,12 @@
                                 <th>Fitrah(Uang)</th>
                                 <th>Fitrah(Beras)</th>
                                 <th>Zakat Mal</th>
-                                <th>Zakat Fidyah</th>
+                                <th>Fidyah</th>
                                 <th>Infaq</th>
+                                <th>Amil Zakat</th>
+                                @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>

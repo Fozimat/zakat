@@ -18,14 +18,18 @@
                     <span class="title">Data Muzakki</span>
                 </a>
             </li>
-            {{-- <li class="nav-item dropdown open">
+
+            @if (Auth::user()->level == 'SUPER ADMIN')
+            <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('amil.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-solution"></i>
                     </span>
                     <span class="title">Data Amil Zakat</span>
                 </a>
-            </li> --}}
+            </li>
+            @endif
+
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('zakat.index') }}">
                     <span class="icon-holder">
@@ -34,6 +38,8 @@
                     <span class="title">Pembayaran Zakat</span>
                 </a>
             </li>
+
+            @if (Auth::user()->level == 'ADMIN')
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('zakat_mal.index') }}">
                     <span class="icon-holder">
@@ -42,6 +48,8 @@
                     <span class="title">Perhitungan Zakat Mal</span>
                 </a>
             </li>
+            @endif
+
             <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('laporan.index') }}">
                     <span class="icon-holder">
