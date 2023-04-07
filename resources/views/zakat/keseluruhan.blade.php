@@ -15,7 +15,76 @@
         table tr th {
             font-size: 9pt;
         }
+
+        .mt-10 {
+            margin-top: -10px;
+        }
+
+        .mt-20 {
+            margin-top: -20px;
+        }
+
+        .mt_10 {
+            margin-top: 10px;
+        }
+
+        .mt_40 {
+            margin-top: -40px;
+        }
+
+        .fs-15 {
+            font-size: 13px;
+        }
+
+        .fs-14 {
+            font-size: 12px;
+        }
+
+        .fs-12 {
+            font-size: 10px;
+        }
+
+        .td-1 {
+            width: 1%;
+        }
+
+        .td-10 {
+            width: 10%;
+        }
+
+        .td-15 {
+            width: 15%;
+        }
+
+        .td-20 {
+            width: 20%;
+        }
+
+        .td-25 {
+            width: 25%;
+        }
+
+        .td-50 {
+            width: 50%;
+        }
+
+        .td-75 {
+            width: 75%;
+        }
     </style>
+
+    <table class="table table-borderless">
+        <tbody>
+            <tr>
+                <td class="td-75">
+                    <h5 class="fs-15">PANITIA / AMIL ZAKAT</h5>
+                    <h5 class="mt-10 fs-15">MASJID AL-MAGHFIROH</h5>
+                    <p class="mt-10 fs-12"><u>Jl. Kp. Wonosari RT 2 / IV TPI</u></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <center>
         <h5>Laporan Panitia Amil Zakat Al-Maghfiroh dari {{ \Carbon\Carbon::parse($dari_tanggal)->isoFormat('
             DD MMMM Y') }} sampai {{ \Carbon\Carbon::parse($sampai_tanggal)->isoFormat('

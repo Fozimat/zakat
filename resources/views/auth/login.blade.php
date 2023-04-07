@@ -60,10 +60,10 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <span class="font-size-13 text-muted">
+                                            {{-- <span class="font-size-13 text-muted">
                                                 Belum punya akun?
                                                 <a class="small" href="{{ route('register') }}"> Registrasi</a>
-                                            </span>
+                                            </span> --}}
                                             <button class="btn btn-primary">Login</button>
                                         </div>
                                     </form>

@@ -59,9 +59,7 @@
                                 <th>Fidyah</th>
                                 <th>Infaq</th>
                                 <th>Amil Zakat</th>
-                                @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
-                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -78,12 +76,12 @@
                                 <td>@format_angka($z->zakat_fidyah)</td>
                                 <td>@format_angka($z->infaq)</td>
                                 <td>{{ $z->amil->nama }}</td>
-                                @if(Auth::user()->level == 'ADMIN')
                                 <td>
                                     <a target="_blank" href="{{ route('zakat.invoice', $z->id) }}">
                                         <button class="btn btn-icon btn-success btn-rounded">
                                             <i class="anticon anticon-printer"></i> </button>
                                     </a>
+                                    @if(Auth::user()->level == 'ADMIN')
                                     <a href="{{ route('zakat.edit', $z->id) }}">
                                         <button class="btn btn-icon btn-warning btn-rounded">
                                             <i class="anticon anticon-edit"></i>
@@ -93,8 +91,8 @@
                                         class="btn btn-icon btn-danger btn-rounded">
                                         <i class="anticon anticon-delete"></i>
                                     </button>
+                                    @endif
                                 </td>
-                                @endif
                             </tr>
                             <div class="modal fade" id="hapusZakat">
                                 <div class="modal-dialog">
@@ -155,9 +153,7 @@
                                 <th>Fidyah</th>
                                 <th>Infaq</th>
                                 <th>Amil Zakat</th>
-                                @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
-                                @endif
                             </tr>
                         </tfoot>
                     </table>

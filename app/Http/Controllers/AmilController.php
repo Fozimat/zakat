@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AmilController extends Controller
 {
@@ -14,7 +15,7 @@ class AmilController extends Controller
      */
     public function index()
     {
-        $amil = User::orderBy('id', 'DESC')->get();
+        $amil = User::where('level', 'ADMIN')->orderBy('id', 'DESC')->get();
         return view('amil.index', compact(['amil']));
     }
 
@@ -25,7 +26,7 @@ class AmilController extends Controller
      */
     public function create()
     {
-        //
+        return view('amil.create');
     }
 
     /**
@@ -36,7 +37,19 @@ class AmilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        User::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => 'ADMIN',
+        ]);
+        return redirect()->route('amil.index')->with('alert', 'Amil zakat berhasil ditambahkan');
     }
 
     /**
