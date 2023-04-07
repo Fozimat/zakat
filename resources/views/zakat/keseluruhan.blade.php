@@ -99,12 +99,21 @@
                 <th>Tanggal</th>
                 <th>Nama</th>
                 <th>Jumlah Jiwa</th>
-                <th>Uang</th>
-                <th>Total Beras</th>
-                <th>Total Uang</th>
+                @if(request()->has('check_beras'))
+                <th>Fitrah Beras</th>
+                @endif
+                @if(request()->has('check_fitrah'))
+                <th>Fitrah Uang</th>
+                @endif
+                @if(request()->has('check_mal'))
                 <th>Mal</th>
+                @endif
+                @if(request()->has('check_fidyah'))
                 <th>Fidyah</th>
+                @endif
+                @if(request()->has('check_infaq'))
                 <th>Infaq</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -116,11 +125,21 @@
             @endphp
             @foreach ($zakat as $key => $data)
             @php
+            if(request()->has('check_fitrah')) {
             $total_zakat_fitrah += $data->total_zakat_fitrah_uang;
+            }
+            if(request()->has('check_beras')) {
             $total_zakat_beras += $data->zakat_fitrah_beras;
+            }
+            if(request()->has('check_mal')) {
             $total_mal += $data->zakat_mal;
+            }
+            if(request()->has('check_fidyah')) {
             $total_fidyah += $data->zakat_fidyah;
+            }
+            if(request()->has('check_infaq')) {
             $total_infaq += $data->infaq;
+            }
             @endphp
             <tr>
                 <td>{{ $loop->iteration }}</td>
@@ -128,41 +147,80 @@
                 <td>{{ $data->tanggal_transaksi->isoFormat('D MMMM Y') }}</td>
                 <td>{{ $data->muzakki->nama }}</td>
                 <td>{{ $data->jumlah_jiwa }} Orang</td>
-                <td>@format_angka($data->zakat_fitrah_uang)</td>
-                <td>@format_angka($data->zakat_fitrah_beras) Kg</td>
+                @if(request()->has('check_beras'))
+                <td>{{ $data->zakat_fitrah_beras }} Kg</td>
+                @endif
+                @if(request()->has('check_fitrah'))
                 <td>@format_angka($data->total_zakat_fitrah_uang)</td>
+                @endif
+                @if(request()->has('check_mal'))
                 <td>@format_angka($data->zakat_mal)</td>
+                @endif
+                @if(request()->has('check_fidyah'))
                 <td>@format_angka($data->zakat_fidyah)</td>
+                @endif
+                @if(request()->has('check_infaq'))
                 <td>@format_angka($data->infaq)</td>
+                @endif
             </tr>
             @if (@$zakat[$key+1]['tanggal_transaksi'] != $data['tanggal_transaksi'])
             <tr>
-                <td colspan="6" class="text-center"><strong>Total</strong></td>
-                <td><strong>@format_angka($total_zakat_beras) Kg</strong></td>
+                <td colspan="5" class="text-center"><strong>Total</strong></td>
+                @if(request()->has('check_beras'))
+                <td><strong>{{ $total_zakat_beras }} Kg</strong></td>
+                @endif
+                @if(request()->has('check_fitrah'))
                 <td><strong>@format_angka($total_zakat_fitrah)</strong></td>
+                @endif
+                @if(request()->has('check_mal'))
                 <td><strong>@format_angka($total_mal)</strong></td>
+                @endif
+                @if(request()->has('check_fidyah'))
                 <td><strong>@format_angka($total_fidyah)</strong></td>
+                @if(request()->has('check_infaq'))
+                @endif
                 <td><strong>@format_angka($total_infaq)</strong></td>
+                @endif
             </tr>
             @php
             $total_zakat_fitrah = $total_zakat_beras = $total_mal = $total_fidyah = $total_infaq = 0;
             @endphp
             @endif
             @php
+            if(request()->has('check_beras')) {
             $total_keseluruhan_zakat_fitrah_beras += $data->zakat_fitrah_beras;
+            }
+            if(request()->has('check_fitrah')) {
             $total_keseluruhan_zakat_fitrah_uang += $data->total_zakat_fitrah_uang;
+            }
+            if(request()->has('check_mal')) {
             $total_keseluruhan_zakat_mal += $data->zakat_mal;
+            }
+            if(request()->has('check_fidyah')) {
             $total_keseluruhan_zakat_fidyah += $data->zakat_fidyah;
+            }
+            if(request()->has('check_infaq')) {
             $total_keseluruhan_infaq += $data->infaq;
+            }
             @endphp
             @endforeach
             <tr>
-                <td colspan="6" class="text-center"><strong>Total Keseluruhan</strong></td>
-                <td><strong>@format_angka($total_keseluruhan_zakat_fitrah_beras) Kg</strong></td>
+                <td colspan="5" class="text-center"><strong>Total Keseluruhan</strong></td>
+                @if(request()->has('check_beras'))
+                <td><strong>{{ $total_keseluruhan_zakat_fitrah_beras }} Kg</strong></td>
+                @endif
+                @if(request()->has('check_fitrah'))
                 <td><strong>@format_angka($total_keseluruhan_zakat_fitrah_uang)</strong></td>
+                @endif
+                @if(request()->has('check_mal'))
                 <td><strong>@format_angka($total_keseluruhan_zakat_mal)</strong></td>
+                @endif
+                @if(request()->has('check_fidyah'))
                 <td><strong>@format_angka($total_keseluruhan_zakat_fidyah)</strong></td>
+                @endif
+                @if(request()->has('check_infaq'))
                 <td><strong>@format_angka($total_keseluruhan_infaq)</strong></td>
+                @endif
             </tr>
         </tbody>
     </table>

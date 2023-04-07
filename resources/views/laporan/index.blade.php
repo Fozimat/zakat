@@ -68,32 +68,37 @@
                         <label for="sampai_tanggal" class="col-sm-2 col-form-label">Filter</label>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" name="check_fitrah"
+                                    id="check_fitrah">
+                                <label class="form-check-label" for="check_fitrah">
                                     Zakat Fitrah (uang)
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="" name="check_beras"
+                                    id="check_beras">
+                                <label class="form-check-label" for="check_beras">
                                     Zakat Fitrah (beras)
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" name="check_mal"
+                                    id="check_mal">
+                                <label class="form-check-label" for="check_mal">
                                     Zakat Mal
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="" name="check_fidyah"
+                                    id="check_fidyah">
+                                <label class="form-check-label" for="check_fidyah">
                                     Zakat Fidyah
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="" name="check_infaq"
+                                    id="check_infaq">
+                                <label class="form-check-label" for="check_infaq">
                                     Infaq
                                 </label>
                             </div>
