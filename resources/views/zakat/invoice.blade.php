@@ -51,6 +51,10 @@
             width: 1%;
         }
 
+        .td-5 {
+            width: 5%;
+        }
+
         .td-10 {
             width: 10%;
         }
@@ -78,6 +82,8 @@
     <table class="table table-borderless">
         <tbody>
             <tr>
+                <td class="td-5"><img style="width: 100px;display:inline;"
+                        src="{{ public_path('assets/images/logo/logo.png') }}" alt=""></td>
                 <td class="td-75">
                     <h5 class="fs-15">PANITIA / AMIL ZAKAT</h5>
                     <h5 class="mt-10 fs-15">MASJID AL-MAGHFIROH</h5>
