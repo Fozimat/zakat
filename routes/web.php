@@ -7,6 +7,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MuzakkiController;
 use App\Http\Controllers\PembayaranZakatController;
+use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\ZakatMalController;
 
 /*
@@ -34,5 +35,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('zakat_mal', ZakatMalController::class);
     Route::resource('amil', AmilController::class);
     Route::resource('laporan', LaporanController::class);
+    Route::resource('penerima', PenerimaController::class);
 });
 Auth::routes();
