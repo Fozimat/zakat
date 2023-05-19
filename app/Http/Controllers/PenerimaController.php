@@ -15,8 +15,9 @@ class PenerimaController extends Controller
      */
     public function index()
     {
-        $penerima = Penerima::orderBy('id', 'DESC')->get();
-        return view('penerima.index', compact(['penerima']));
+        $golongan = Golongan::all();
+        $penerima = Penerima::with(['golongan'])->orderBy('id', 'DESC')->get();
+        return view('penerima.index', compact(['penerima', 'golongan']));
     }
 
     /**
@@ -27,7 +28,7 @@ class PenerimaController extends Controller
     public function create()
     {
         $golongan = Golongan::all();
-        return view('penerima.create');
+        return view('penerima.create', compact(['golongan']));
     }
 
     /**
@@ -38,7 +39,19 @@ class PenerimaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $golongan = $request->golongan_id;
+        $i = 0;
+        $data = [];
+
+        foreach ($golongan as $gol) {
+            array_push($data, [
+                'golongan_id' => $gol,
+                'nama' => $request->nama[$i]
+            ]);
+            $i++;
+        }
+        Penerima::insert($data);
+        return redirect()->route('penerima.index')->with('alert', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -58,9 +71,10 @@ class PenerimaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Penerima $penerima)
     {
-        //
+        $golongan = Golongan::all();
+        return view('penerima.edit', compact(['penerima', 'golongan']));
     }
 
     /**
@@ -70,9 +84,10 @@ class PenerimaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Penerima $penerima)
     {
-        //
+        $penerima->update($request->all());
+        return redirect()->route('penerima.index')->with('alert', ' Data berhasil diedit');
     }
 
     /**
@@ -81,8 +96,9 @@ class PenerimaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Penerima $penerima)
     {
-        //
+        $penerima->delete();
+        return redirect()->route('penerima.index')->with('alert', ' Data berhasil dihapus');
     }
 }

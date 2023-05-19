@@ -10,4 +10,9 @@ class Golongan extends Model
     use HasFactory;
     protected $table = 'golongan';
     protected $guarded  = [''];
+
+    public function penerima()
+    {
+        return $this->hasMany(Penerima::class, 'golongan_id', 'id');
+    }
 }

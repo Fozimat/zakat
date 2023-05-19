@@ -51,6 +51,15 @@
             @endif
 
             <li class="nav-item dropdown open">
+                <a class="dropdown-toggle" href="{{ route('penerima.index') }}">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-file"></i>
+                    </span>
+                    <span class="title">Penerima Zakat</span>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown open">
                 <a class="dropdown-toggle" href="{{ route('laporan.index') }}">
                     <span class="icon-holder">
                         <i class="anticon anticon-printer"></i>

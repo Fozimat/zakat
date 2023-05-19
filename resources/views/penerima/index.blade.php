@@ -51,31 +51,36 @@
     </div>
     @endif
 
+    @if(Auth::user()->level == 'ADMIN')
+    <a href="{{ route('penerima.create') }}" class="btn btn-secondary mb-4">Tambah Data</a>
+    <a href="{{ route('penerima.create') }}" class="btn btn-success mb-4">Distribusi Zakat</a>
+    @endif
+    @foreach ($golongan as $gol)
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-                <h4>DATA PENERIMA</h4>
-                @if(Auth::user()->level == 'ADMIN')
-                <a href="{{ route('penerima.create') }}" class="btn btn-secondary">Tambah Data</a>
-                @endif
+                <h4>{{ $gol->kategori }}</h4>
+
             </div>
             <div class="m-t-25">
                 <div class="table-responsive">
-                    <table id="data-table" class="table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Golongan</th>
                                 @if(Auth::user()->level == 'ADMIN')
                                 <th>Aksi</th>
                                 @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($penerima as $muz)
+                            @foreach ($gol->penerima->where('golongan_id', $gol->id) as $muz)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $muz->nama }}</td>
+                                <td>{{ $muz->golongan->kategori }}</td>
                                 @if(Auth::user()->level == 'ADMIN')
                                 <td>
                                     <a href="{{ route('penerima.edit', $muz->id) }}">
@@ -140,19 +145,12 @@
                             </div>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                @if(Auth::user()->level == 'ADMIN')
-                                <th>Aksi</th>
-                                @endif
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    @endforeach
+
 </div>
 @endsection
