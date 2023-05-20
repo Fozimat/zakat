@@ -53,7 +53,7 @@
 
     @if(Auth::user()->level == 'ADMIN')
     <a href="{{ route('penerima.create') }}" class="btn btn-secondary mb-4">Tambah Data</a>
-    <a href="{{ route('penerima.create') }}" class="btn btn-success mb-4">Distribusi Zakat</a>
+    <a href="{{ route('penerima.distribusi') }}" class="btn btn-success mb-4">Distribusi Zakat</a>
     @endif
     @foreach ($golongan as $gol)
     <div class="card">
@@ -76,7 +76,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($gol->penerima->where('golongan_id', $gol->id) as $muz)
+                            @foreach ($gol->penerima->where('golongan_id', $gol->id)->where('terima', 0) as $muz)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $muz->nama }}</td>

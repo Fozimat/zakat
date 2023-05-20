@@ -14,10 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $total_zakat_fitrah = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('total_zakat_fitrah_uang');
-        $total_zakat_fitrah_beras = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fitrah_beras');
-        $total_zakat_mal = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_mal');
-        $total_zakat_fidyah = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fidyah');
+        $total_zakat_fitrah = Zakat::where('distribusi', 0)->whereYear('tanggal_transaksi', date('Y'))->sum('total_zakat_fitrah_uang');
+        $total_zakat_fitrah_beras = Zakat::where('distribusi', 0)->whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fitrah_beras');
+        $total_zakat_mal = Zakat::where('distribusi', 0)->whereYear('tanggal_transaksi', date('Y'))->sum('zakat_mal');
+        $total_zakat_fidyah = Zakat::where('distribusi', 0)->whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fidyah');
         $total_infaq = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('infaq');
         return view('dashboard.index', compact(['total_zakat_fitrah_beras', 'total_zakat_fitrah', 'total_zakat_mal', 'total_zakat_fidyah', 'total_infaq']));
     }

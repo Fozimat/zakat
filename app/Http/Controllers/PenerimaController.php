@@ -42,6 +42,7 @@ class PenerimaController extends Controller
 
         foreach ($semua_kategori as $semua) {
             DB::table('penerima')
+                ->where('terima', 0)
                 ->whereIn('golongan_id', [1, 2])
                 ->update([
                     'zakat_mal' => $zakat_mal,
@@ -52,10 +53,15 @@ class PenerimaController extends Controller
 
         foreach ($semua_kategori as $semua) {
             DB::table('penerima')
+                ->where('terima', 0)
                 ->update([
                     'zakat_fitrah' => $zakat_fitrah,
+                    'terima' => 1,
                 ]);
         }
+
+        Zakat::where('distribusi', 0)->update(['distribusi' => 1]);
+        return redirect()->route('penerima.index')->with('alert', 'Zakat berhasil didistribusikan');
     }
 
     /**
@@ -85,6 +91,7 @@ class PenerimaController extends Controller
             array_push($data, [
                 'golongan_id' => $gol,
                 'nama' => $request->nama[$i],
+                'terima' => 0,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
