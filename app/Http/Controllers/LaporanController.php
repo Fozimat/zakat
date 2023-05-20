@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PDF;
 use Carbon\Carbon;
 use App\Models\Zakat;
+use App\Models\Penerima;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -25,6 +26,16 @@ class LaporanController extends Controller
         $sampai_tanggal = Carbon::createFromFormat('m/d/Y', $request->sampai_tanggal)->format('Y-m-d');;
         $zakat = Zakat::whereBetween('tanggal_transaksi', [$dari_tanggal, $sampai_tanggal])->orderBy('tanggal_transaksi', 'ASC')->get();
         $pdf = PDF::loadview('zakat.keseluruhan', compact(['zakat', 'dari_tanggal', 'sampai_tanggal']))->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function cetakDistribusi(Request $request)
+    {
+        $dari_tanggal = Carbon::createFromFormat('m/d/Y', $request->dari_tanggal)->format('Y-m-d');;
+        $sampai_tanggal = Carbon::createFromFormat('m/d/Y', $request->sampai_tanggal)->format('Y-m-d');;
+        $penerima = Penerima::with(['golongan'])->whereDate('created_at', '>=', $dari_tanggal)
+            ->whereDate('created_at', '<=', $sampai_tanggal)->orderBy('golongan_id', 'ASC')->orderBy('id', 'ASC')->get();
+        $pdf = PDF::loadview('zakat.distribusi', compact(['penerima', 'dari_tanggal', 'sampai_tanggal']))->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
 

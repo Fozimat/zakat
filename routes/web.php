@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/zakat/excel', [App\Http\Controllers\PembayaranZakatController::class, 'excel'])->name('zakat.excel');
     Route::get('/zakat/invoice/{zakat}', [App\Http\Controllers\PembayaranZakatController::class, 'invoice'])->name('zakat.invoice');
     Route::post('/laporan/keseluruhan', [App\Http\Controllers\LaporanController::class, 'cetakKeseluruhan'])->name('laporan.keseluruhan');
+    Route::post('/laporan/distribusi', [App\Http\Controllers\LaporanController::class, 'cetakDistribusi'])->name('laporan.distribusi');
     Route::get('/penerima/distribusi', [App\Http\Controllers\PenerimaController::class, 'distribusi'])->name('penerima.distribusi');
     Route::resource('dashboard', DashboardController::class);
     Route::resource('muzakki', MuzakkiController::class);

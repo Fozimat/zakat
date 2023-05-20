@@ -112,6 +112,43 @@
             </div>
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Cetak Laporan Distribusi Zakat</h4>
+            <div class="m-t-25">
+                <form action="{{ route('laporan.distribusi') }}" method="POST" target="_blank">
+                    @csrf
+                    <div class="form-group row">
+                        <label for="dari_tanggal" class="col-sm-2 col-form-label">Dari Tanggal</label>
+                        <div class="col-sm-10">
+                            <div class="input-affix m-b-10">
+                                <i class="prefix-icon anticon anticon-calendar"></i>
+                                <input required type="text" class="form-control datepicker-input" id="dari_tanggal"
+                                    name="dari_tanggal" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="sampai_tanggal" class="col-sm-2 col-form-label">Sampai Tanggal</label>
+                        <div class="col-sm-10">
+                            <div class="input-affix m-b-10">
+                                <i class="prefix-icon anticon anticon-calendar"></i>
+                                <input required type="text" class="form-control datepicker-input" id="sampai_tanggal"
+                                    name="sampai_tanggal" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Cetak</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 
