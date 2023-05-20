@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Zakat;
 use App\Models\Golongan;
 use App\Models\Penerima;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PenerimaController extends Controller
 {
@@ -18,6 +20,42 @@ class PenerimaController extends Controller
         $golongan = Golongan::all();
         $penerima = Penerima::with(['golongan'])->orderBy('id', 'DESC')->get();
         return view('penerima.index', compact(['penerima', 'golongan']));
+    }
+
+    public function distribusi()
+    {
+        $total_zakat_fitrah = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('total_zakat_fitrah_uang');
+        $total_beras = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fitrah_beras');
+        $total_zakat_mal = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_mal');
+        $total_zakat_fidyah = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fidyah');
+
+        $semua_kategori = Penerima::whereYear('created_at', date('Y'))->get();
+        $total_semua_kategori = $semua_kategori->count();
+
+        $fakir_miskin = Penerima::whereIn('golongan_id', [1, 2])->whereYear('created_at', date('Y'))->get();
+        $total_fakir_miskin = $fakir_miskin->count();
+
+        $zakat_fitrah = $total_zakat_fitrah / $total_semua_kategori;
+        $zakat_mal = $total_zakat_mal / $total_fakir_miskin;
+        $zakat_fidyah = $total_zakat_fidyah / $total_fakir_miskin;
+        $zakat_beras = $total_beras / $total_fakir_miskin;
+
+        foreach ($semua_kategori as $semua) {
+            DB::table('penerima')
+                ->whereIn('golongan_id', [1, 2])
+                ->update([
+                    'zakat_mal' => $zakat_mal,
+                    'zakat_fidyah' => $zakat_fidyah,
+                    'zakat_beras' => $zakat_beras,
+                ]);
+        }
+
+        foreach ($semua_kategori as $semua) {
+            DB::table('penerima')
+                ->update([
+                    'zakat_fitrah' => $zakat_fitrah,
+                ]);
+        }
     }
 
     /**
@@ -46,7 +84,9 @@ class PenerimaController extends Controller
         foreach ($golongan as $gol) {
             array_push($data, [
                 'golongan_id' => $gol,
-                'nama' => $request->nama[$i]
+                'nama' => $request->nama[$i],
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
             $i++;
         }
