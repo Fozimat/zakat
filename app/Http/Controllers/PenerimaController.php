@@ -24,6 +24,10 @@ class PenerimaController extends Controller
 
     public function distribusi()
     {
+        $cek_penerima = Penerima::where('terima', 0)->count();
+        if ($cek_penerima < 1) {
+            return redirect()->route('penerima.index')->with('alert', 'Penerima kosong, silakan ditambahkan terlebih dahulu');
+        }
         $total_zakat_fitrah = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('total_zakat_fitrah_uang');
         $total_beras = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_fitrah_beras');
         $total_zakat_mal = Zakat::whereYear('tanggal_transaksi', date('Y'))->sum('zakat_mal');
