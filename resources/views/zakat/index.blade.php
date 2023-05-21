@@ -59,6 +59,7 @@
                                 <th>Fidyah</th>
                                 <th>Infaq</th>
                                 <th>Amil Zakat</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -76,6 +77,11 @@
                                 <td>@format_angka($z->zakat_fidyah)</td>
                                 <td>@format_angka($z->infaq)</td>
                                 <td>{{ $z->amil->nama }}</td>
+                                <td>
+                                    {!! $z->distribusi == '1' ? '<span class="badge badge-primary">Distribusi</span>' :
+                                    '-'
+                                    !!}
+                                </td>
                                 <td>
                                     <a target="_blank" href="{{ route('zakat.invoice', $z->id) }}">
                                         <button class="btn btn-icon btn-success btn-rounded">

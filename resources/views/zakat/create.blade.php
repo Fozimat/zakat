@@ -145,11 +145,11 @@
                     <div class="form-group row">
                         <div class="col-sm-10 offset-sm-2">
                             <div class="radio">
-                                <input id="radio1" name="pilih_zakat_fitrah" type="radio">
+                                <input id="radio1" name="pilih_zakat_fitrah" type="radio" value="uang">
                                 <label for="radio1">Zakat Fitrah (Uang)</label>
                             </div>
                             <div class="radio">
-                                <input id="radio2" name="pilih_zakat_fitrah" type="radio">
+                                <input id="radio2" name="pilih_zakat_fitrah" type="radio" value="beras">
                                 <label for="radio2">Zakat Fitrah (Beras)</label>
                             </div>
                         </div>
