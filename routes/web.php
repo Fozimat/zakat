@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/zakat/invoice/{zakat}', [App\Http\Controllers\PembayaranZakatController::class, 'invoice'])->name('zakat.invoice');
     Route::post('/laporan/keseluruhan', [App\Http\Controllers\LaporanController::class, 'cetakKeseluruhan'])->name('laporan.keseluruhan');
     Route::post('/laporan/distribusi', [App\Http\Controllers\LaporanController::class, 'cetakDistribusi'])->name('laporan.distribusi');
-    Route::get('/penerima/distribusi', [App\Http\Controllers\PenerimaController::class, 'distribusi'])->name('penerima.distribusi');
+    Route::post('/penerima/distribusi', [App\Http\Controllers\PenerimaController::class, 'distribusi'])->name('penerima.distribusi');
     Route::resource('dashboard', DashboardController::class);
     Route::resource('muzakki', MuzakkiController::class);
     Route::resource('zakat', PembayaranZakatController::class);

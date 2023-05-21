@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Zakat;
 use App\Models\Golongan;
 use App\Models\Penerima;
@@ -22,8 +23,9 @@ class PenerimaController extends Controller
         return view('penerima.index', compact(['penerima', 'golongan']));
     }
 
-    public function distribusi()
+    public function distribusi(Request $request)
     {
+        $tanggal = Carbon::createFromFormat('m/d/Y', $request->tanggal)->format('Y-m-d');
         $cek_penerima = Penerima::where('terima', 0)->count();
         if ($cek_penerima < 1) {
             return redirect()->route('penerima.index')->with('alert', 'Penerima kosong, silakan ditambahkan terlebih dahulu');
@@ -61,6 +63,7 @@ class PenerimaController extends Controller
                 ->update([
                     'zakat_fitrah' => $zakat_fitrah,
                     'terima' => 1,
+                    'tanggal' => $tanggal,
                 ]);
         }
 

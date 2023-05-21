@@ -2,12 +2,23 @@
 
 @push('style')
 <link href="{{ asset('assets/vendors/datatables/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendors/select2/select2.css') }}" rel="stylesheet">
 @endpush
 
 @push('script')
 <script src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/pages/datatables.js') }}"></script>
+<script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
+<script>
+    $('.select2').select2();
+    $('.datepicker-input').datepicker({
+        format: 'mm/dd/yyyy',
+        locale: 'en'
+    });
+</script>
 @endpush
 
 @section('content')
@@ -52,8 +63,35 @@
     @endif
 
     @if(Auth::user()->level == 'ADMIN')
+
+    <div class="card">
+        <form action="{{ route('penerima.distribusi') }}" method="POST">
+            @csrf
+            <div class="card-body">
+                <h4>Distribusi Zakat</h4>
+                <div class="m-t-25">
+                    <div class="form-group row">
+                        <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
+                        <div class="col-sm-10">
+                            <div class="input-affix m-b-10">
+                                <i class="prefix-icon anticon anticon-calendar"></i>
+                                <input required type="text" class="form-control datepicker-input" id="tanggal"
+                                    name="tanggal" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary mb-4">Distribusi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <a href="{{ route('penerima.create') }}" class="btn btn-secondary mb-4">Tambah Data</a>
-    <a href="{{ route('penerima.distribusi') }}" class="btn btn-success mb-4">Distribusi Zakat</a>
+
     @endif
     @foreach ($golongan as $gol)
     <div class="card">
@@ -87,15 +125,15 @@
                                         <button class="btn btn-icon btn-warning btn-rounded">
                                             <i class="anticon anticon-edit"></i>
                                         </button>
-                                    </a>
-                                    <form action="{{ route('penerima.destroy', $muz->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('Apakah anda yakin?')" type="submit"
-                                            class="btn btn-icon btn-danger btn-rounded">
-                                            <i class="anticon anticon-delete"></i>
                                         </button>
-                                        <form>
+                                        <form action="{{ route('penerima.destroy', $muz->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button onclick="return confirm('Apakah anda yakin?')" type="submit"
+                                                class="btn btn-icon btn-danger btn-rounded">
+                                                <i class="anticon anticon-delete"></i>
+                                            </button>
+                                            <form>
                                 </td>
                                 @endif
                             </tr>

@@ -33,8 +33,7 @@ class LaporanController extends Controller
     {
         $dari_tanggal = Carbon::createFromFormat('m/d/Y', $request->dari_tanggal)->format('Y-m-d');;
         $sampai_tanggal = Carbon::createFromFormat('m/d/Y', $request->sampai_tanggal)->format('Y-m-d');;
-        $penerima = Penerima::with(['golongan'])->whereDate('created_at', '>=', $dari_tanggal)
-            ->whereDate('created_at', '<=', $sampai_tanggal)->orderBy('golongan_id', 'ASC')->orderBy('id', 'ASC')->get();
+        $penerima = Penerima::with(['golongan'])->whereBetween('tanggal', [$dari_tanggal, $sampai_tanggal])->orderBy('golongan_id', 'ASC')->orderBy('id', 'ASC')->get();
         $pdf = PDF::loadview('zakat.distribusi', compact(['penerima', 'dari_tanggal', 'sampai_tanggal']))->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
